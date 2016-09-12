@@ -1,0 +1,21 @@
+.warning{
+    font-size: 14px;
+    display: none;
+}
+
+.menu-toggle{
+    cursor: pointer;
+}
+
+body{
+    padding-top: 0;
+}
+
+.header{
+    padding:30px;
+    padding-bottom: 50px;
+}
+
+.title{
+    margin-left: 20px;;
+}
