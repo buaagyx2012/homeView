@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<style type="text/css">
+    canvas{border:dashed 2px #CCC}
+</style>
+<script type="text/javascript">
+    function $$(id){
+        return document.getElementById(id);
+    }
+    function pageLoad(){
+        var can = $$('can');
+        var cans = can.getContext('2d');
+        cans.moveTo(0,0);//第一个起点
+        cans.lineTo(0,68);//第二个点
+        cans.lineTo(966,149);//第三个点（以第二个点为起点）
+        cans.lineTo(1932,68);//第三个点（以第二个点为起点）
+        cans.lineTo(1932,0);//第三个点（以第二个点为起点）
+        cans.lineTo(0,0);//第三个点（以第二个点为起点）
+        cans.lineWidth=1;
+        cans.strokeStyle = 'red';
+        cans.stroke();
+    }
+</script>
+<body onload="pageLoad();">
+<canvas id="can" width="1932px" height="149px">4</canvas>
+</body>
+</html>

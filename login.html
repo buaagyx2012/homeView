@@ -2,236 +2,172 @@
 <html>
 <head>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<!-- 新 Bootstrap 核心 CSS 文件 -->
-	<link rel="stylesheet" href="./css/bootstrap.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
 
-	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
-<!-- 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css"> -->
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <!-- 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css"> -->
 
 
-	<link rel="stylesheet" href="./css/base.css">
-	<link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/button.css">
-	<title>登录</title>
+    <title>登录</title>
 <body>
 
-    <div class="container form-container" >
-        <form class="form-signin" role="form">
-            <h2 class="form-signin-heading">请登录</h2>
-            <input type="text" class="form-control" placeholder="请输入用户名" name="username"required autofocus>
-            <input type="password" class="form-control" placeholder="请输入密码" name="password"required>
-            <div class="checkbox">
+<div class="container form-container" >
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">请登录</h2>
+        <input type="text" class="form-control" placeholder="请输入用户名" name="username"required autofocus>
+        <input type="password" class="form-control" placeholder="请输入密码" name="password"required>
+        <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> 记住我
             </label>
-            </div>
-            <div class="row text-right">
-                    <button class="button button-3d button-highlight button-pill" type="submit" id="to-signup">注册</button>
-                    <button class="button button-3d button-primary button-pill " type="submit" id="signin">登录</button>
-            </div>
-      </form>
-        <form class="form-signup" role="form" style="display: none">
-            <h2 class="form-signup-heading">请注册</h2>
-            <input type="text" class="form-control" placeholder="请输入用户名" name="username" required autofocus>
-            <input type="password" class="form-control" placeholder="请输入密码" name="password" required>
-            <input type="password" class="form-control" placeholder="请确认密码" name="check-password" required>
-            <div class="row text-right">
-                <button class="button button-3d button-highlight button-pill" type="submit" id="to-signin" >返回登录</button>
-                <button class="button button-3d button-primary button-pill " type="submit" id="signup">注册</button>
-            </div>
-        </form>
+        </div>
+        <div class="row text-right">
+            <button class="button button-3d button-highlight button-pill" type="submit" id="to-signup">注册</button>
+            <button class="button button-3d button-primary button-pill " type="submit" id="signin">登录</button>
+        </div>
+    </form>
+    <form class="form-signup" role="form" style="display: none">
+        <h2 class="form-signup-heading">请注册</h2>
+        <input type="text" class="form-control" placeholder="请输入用户名" name="username" required autofocus>
+        <input type="password" class="form-control" placeholder="请输入密码" name="password" required>
+        <input type="password" class="form-control" placeholder="请确认密码" name="check-password" required>
+        <div class="row text-right">
+            <button class="button button-3d button-highlight button-pill" type="submit" id="to-signin" >返回登录</button>
+            <button class="button button-3d button-primary button-pill " type="submit" id="signup">注册</button>
+        </div>
+    </form>
 
-    </div> <!-- /container -->
-	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+</div> <!-- /container -->
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 
-	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-	<script src="./js/bootstrap.js"></script>
-    <script src="./js/login.js"></script>
-    <script type="text/javascript" src="js/cloud/ThreeWebGL.js"></script>
-    <script type="text/javascript" src="js/cloud/ThreeExtras.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="./js/bootstrap.js"></script>
+<script src="./js/login.js"></script>
+<script type="text/javascript" src="js/cloud/ThreeWebGL.js"></script>
+<script type="text/javascript" src="js/cloud/ThreeExtras.js"></script>
 
-    <script type="text/javascript" src="js/cloud/Detector.js"></script>
-    <script type="text/javascript" src="js/cloud/RequestAnimationFrame.js"></script>
+<script type="text/javascript" src="js/cloud/Detector.js"></script>
+<script type="text/javascript" src="js/cloud/RequestAnimationFrame.js"></script>
 
 
-    <script id="vs" type="x-shader/x-vertex">
-
+<script id="vs" type="x-shader/x-vertex">
 			varying vec2 vUv;
-
 			void main() {
-
 				vUv = uv;
 				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-
 			}
-
 		</script>
 
-    <script id="fs" type="x-shader/x-fragment">
-
+<script id="fs" type="x-shader/x-fragment">
 			uniform sampler2D map;
-
 			uniform vec3 fogColor;
 			uniform float fogNear;
 			uniform float fogFar;
-
 			varying vec2 vUv;
-
 			void main() {
-
 				float depth = gl_FragCoord.z / gl_FragCoord.w;
 				float fogFactor = smoothstep( fogNear, fogFar, depth );
-
 				gl_FragColor = texture2D( map, vUv );
 				gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
 				gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
-
 			}
-
 		</script>
 
-    <script type="text/javascript">
-
-        if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-
-        // Bg gradient
-
-        var canvas = document.createElement( 'canvas' );
-        canvas.width = 32;
-        canvas.height = window.innerHeight;
-
-        var context = canvas.getContext( '2d' );
-
-        var gradient = context.createLinearGradient( 0, 0, 0, canvas.height );
-        gradient.addColorStop(0, "#1e4877");
-        gradient.addColorStop(0.5, "#4584b4");
-
-        context.fillStyle = gradient;
-        context.fillRect(0, 0, canvas.width, canvas.height);
-
-        document.body.style.background = 'url(' + canvas.toDataURL('image/png') + ')';
-
-        // Clouds
-
-        var container;
-        var camera, scene, renderer, sky, mesh, geometry, material,
-                i, h, color, colors = [], sprite, size, x, y, z;
-
-        var mouseX = 0, mouseY = 0;
-        var start_time = new Date().getTime();
-
-        var windowHalfX = window.innerWidth / 2;
-        var windowHalfY = window.innerHeight / 2;
-
-        init();
-        animate();
-
-        function init() {
-
-            container = document.createElement( 'div' );
-            document.body.appendChild( container );
-
-            camera = new THREE.Camera( 30, window.innerWidth / window.innerHeight, 1, 3000 );
-            camera.position.z = 6000;
-
-            scene = new THREE.Scene();
-
-            geometry = new THREE.Geometry();
-
-            var texture = THREE.ImageUtils.loadTexture( './image/cloud10.png' );
-            texture.magFilter = THREE.LinearMipMapLinearFilter;
-            texture.minFilter = THREE.LinearMipMapLinearFilter;
-
-            var fog = new THREE.Fog( 0x4584b4, - 100, 3000 );
-
-            material = new THREE.MeshShaderMaterial( {
-
-                uniforms: {
-
-                    "map": { type: "t", value:2, texture: texture },
-                    "fogColor" : { type: "c", value: fog.color },
-                    "fogNear" : { type: "f", value: fog.near },
-                    "fogFar" : { type: "f", value: fog.far },
-
-                },
-                vertexShader: document.getElementById( 'vs' ).textContent,
-                fragmentShader: document.getElementById( 'fs' ).textContent,
-                depthTest: false
-
-            } );
-
-            var plane = new THREE.Mesh( new THREE.Plane( 64, 64 ) );
-
-            for ( i = 0; i < 8000; i++ ) {
-
-                plane.position.x = Math.random() * 1000 - 500;
-                plane.position.y = - Math.random() * Math.random() * 200 - 15;
-                plane.position.z = i;
-                plane.rotation.z = Math.random() * Math.PI;
-                plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
-
-                GeometryUtils.merge( geometry, plane );
-
-            }
-
-            mesh = new THREE.Mesh( geometry, material );
-            scene.addObject( mesh );
-
-            mesh = new THREE.Mesh( geometry, material );
-            mesh.position.z = - 8000;
-            scene.addObject( mesh );
-
-            renderer = new THREE.WebGLRenderer( { antialias: false } );
-            renderer.setSize( window.innerWidth, window.innerHeight );
-            container.appendChild( renderer.domElement );
-
-            document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-            window.addEventListener( 'resize', onWindowResize, false );
-
+<script type="text/javascript">
+    if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+    // Bg gradient
+    var canvas = document.createElement( 'canvas' );
+    canvas.width = 32;
+    canvas.height = window.innerHeight;
+    var context = canvas.getContext( '2d' );
+    var gradient = context.createLinearGradient( 0, 0, 0, canvas.height );
+    gradient.addColorStop(0, "#1e4877");
+    gradient.addColorStop(0.5, "#4584b4");
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    document.body.style.background = 'url(' + canvas.toDataURL('image/png') + ')';
+    // Clouds
+    var container;
+    var camera, scene, renderer, sky, mesh, geometry, material,
+            i, h, color, colors = [], sprite, size, x, y, z;
+    var mouseX = 0, mouseY = 0;
+    var start_time = new Date().getTime();
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+    init();
+    animate();
+    function init() {
+        container = document.createElement( 'div' );
+        document.body.appendChild( container );
+        camera = new THREE.Camera( 30, window.innerWidth / window.innerHeight, 1, 3000 );
+        camera.position.z = 6000;
+        scene = new THREE.Scene();
+        geometry = new THREE.Geometry();
+        var texture = THREE.ImageUtils.loadTexture( './image/cloud10.png' );
+        texture.magFilter = THREE.LinearMipMapLinearFilter;
+        texture.minFilter = THREE.LinearMipMapLinearFilter;
+        var fog = new THREE.Fog( 0x4584b4, - 100, 3000 );
+        material = new THREE.MeshShaderMaterial( {
+            uniforms: {
+                "map": { type: "t", value:2, texture: texture },
+                "fogColor" : { type: "c", value: fog.color },
+                "fogNear" : { type: "f", value: fog.near },
+                "fogFar" : { type: "f", value: fog.far },
+            },
+            vertexShader: document.getElementById( 'vs' ).textContent,
+            fragmentShader: document.getElementById( 'fs' ).textContent,
+            depthTest: false
+        } );
+        var plane = new THREE.Mesh( new THREE.Plane( 64, 64 ) );
+        for ( i = 0; i < 8000; i++ ) {
+            plane.position.x = Math.random() * 1000 - 500;
+            plane.position.y = - Math.random() * Math.random() * 200 - 15;
+            plane.position.z = i;
+            plane.rotation.z = Math.random() * Math.PI;
+            plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
+            GeometryUtils.merge( geometry, plane );
         }
-
-        function onDocumentMouseMove( event ) {
-
-            mouseX = ( event.clientX - windowHalfX ) * 0.25;
-            mouseY = ( event.clientY - windowHalfY ) * 0.15;
-
-        }
-
-        function onWindowResize( event ) {
-
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-
-            renderer.setSize( window.innerWidth, window.innerHeight );
-
-        }
-
-        function animate() {
-
-            requestAnimationFrame( animate );
-            render();
-
-        }
-
-        function render() {
-
-            position = ( ( new Date().getTime() - start_time ) * 0.03 ) % 8000;
-
-            camera.position.x += ( mouseX - camera.target.position.x ) * 0.01;
-            camera.position.y += ( - mouseY - camera.target.position.y ) * 0.01;
-            camera.position.z = - position + 8000;
-
-            camera.target.position.x = camera.position.x;
-            camera.target.position.y = camera.position.y;
-            camera.target.position.z = camera.position.z - 1000;
-
-            renderer.render( scene, camera );
-
-        }
-
-    </script>
+        mesh = new THREE.Mesh( geometry, material );
+        scene.addObject( mesh );
+        mesh = new THREE.Mesh( geometry, material );
+        mesh.position.z = - 8000;
+        scene.addObject( mesh );
+        renderer = new THREE.WebGLRenderer( { antialias: false } );
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        container.appendChild( renderer.domElement );
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        window.addEventListener( 'resize', onWindowResize, false );
+    }
+    function onDocumentMouseMove( event ) {
+        mouseX = ( event.clientX - windowHalfX ) * 0.25;
+        mouseY = ( event.clientY - windowHalfY ) * 0.15;
+    }
+    function onWindowResize( event ) {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    function animate() {
+        requestAnimationFrame( animate );
+        render();
+    }
+    function render() {
+        position = ( ( new Date().getTime() - start_time ) * 0.03 ) % 8000;
+        camera.position.x += ( mouseX - camera.target.position.x ) * 0.01;
+        camera.position.y += ( - mouseY - camera.target.position.y ) * 0.01;
+        camera.position.z = - position + 8000;
+        camera.target.position.x = camera.position.x;
+        camera.target.position.y = camera.position.y;
+        camera.target.position.z = camera.position.z - 1000;
+        renderer.render( scene, camera );
+    }
+</script>
 
 </body>
 </html>

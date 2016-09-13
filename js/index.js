@@ -39,6 +39,15 @@ $(function(){
         }
     }
 
+
+    function renderMd(text) {
+        $(".markdown-html").append(markdownit().render(text));
+    }
+
+    renderMd("# h1 Heading 8-)");
     init();
+
+
+
 
 });
