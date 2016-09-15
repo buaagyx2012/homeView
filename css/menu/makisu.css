@@ -10,8 +10,8 @@
     transform-style: preserve-3d;
     
     text-transform: uppercase;
-    position: absolute;
-    margin-left: -140px;
+    /*position: absolute;*/
+    /*margin-left: -140px;*/
     top: 55%;
 }
 
